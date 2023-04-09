@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Thasadith&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Thasadith", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url("backgroundHome.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  color: #fff;
+}
+
+@media screen and (max-width: 900px) {
+  body {
+    background-image: url("backgroundHome.2jpg.jpeg");
+  }
+}

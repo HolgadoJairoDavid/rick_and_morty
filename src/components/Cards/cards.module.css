@@ -1,0 +1,47 @@
+.Cards {
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+  grid-column-gap: 1.8em;
+  margin-left: 1%;
+  margin-right: 4%;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 900px) {
+  .Cards {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-column-gap: 3.5em;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Cards {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-column-gap: 3em;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .Cards {
+    display: grid;
+    grid-template-columns: 45% 45%;
+    grid-column-gap: 2.5em;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .Cards {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-column-gap: 5em;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

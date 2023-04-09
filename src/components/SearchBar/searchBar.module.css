@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+
+.SearchBar {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  margin-right: 50px;
+  font-family: "Raleway", sans-serif;
+}
+
+.SearchBar input {
+  width: 30%;
+  padding-left: 10px;
+  height: 40px;
+  margin-top: 20px;
+  outline: none;
+  border: none;
+  margin-right: 20px;
+  font-style: italic;
+}
+
+.SearchBar button {
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid #ff0a78;
+  background: #ff0a78;
+  font-family: "Raleway", sans-serif;
+}
+
+.SearchBar > button:hover {
+  background: #fff;
+  color: #ff0a78;
+}

@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+
+.Nav button {
+  margin-top: 20px;
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid #ff0a78;
+  background: #ff0a78;
+  font-family: "Raleway", sans-serif;
+}
+
+.Nav > button:hover {
+  background: #fff;
+  color: #ff0a78;
+}
+
+.Nav .Heading > button {
+  cursor: pointer;
+  background: #ffffff00;
+  border: none;
+  color: #fff;
+  font-weight: lighter;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  position: relative;
+  bottom: 16.5px;
+}
+
+.Nav {
+  text-align: center;
+}
+
+.NavLink {
+  color: #fff;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+}
+
+.Heading {
+  display: flex;
+  width: 50vw;
+  justify-content: space-around;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+}
+
+.Head {
+  width: 100vw;
+  height: 50px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background: #880101; 
+}
