@@ -89,7 +89,11 @@ function App() {
         pathname === "/start/about" ||
         searchPath(pathname)) &&
       navigate("/login"))
-  }, [access]);
+
+      return ()=>{
+        setCharacters([])
+      }
+  }, [access, navigate, pathname]);
 
   return (
     <div className="App">
