@@ -5,7 +5,7 @@ body {
   font-family: "Thasadith", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("backgroundHome.jpg");
+  background-image: url("./assets/backgroundHome.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -15,6 +15,6 @@ body {
 
 @media screen and (max-width: 900px) {
   body {
-    background-image: url("backgroundHome.2jpg.jpeg");
+    background-image: url("./assets/backgroundHome.2jpg.jpeg");
   }
 }

@@ -7,48 +7,40 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Detail from "./components/Detail/Detail";
 import Error from "./components/Error/Error";
 import Form from "./components/Form/Form";
+import CONSTANTES from "./App/CONSTANTES";
 
 function App() {
-  let [access, setAccess] = useState(false);
-  const navigate = useNavigate();
-  // ! CREDENCIALES FAKE
-  const EMAIL = "jairodavidholgado@gmail.com",
-    PASSWORD = "jairo18";
 
-  // LOGIN
+  let [access, setAccess] = useState(false);
+  let [characters, setCharacters] = useState([]);
+  let { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  // ***************************************************************************
 
   const login = ({ email, password }) => {
-    if (password === PASSWORD && email === EMAIL) {
+    if (password === CONSTANTES.PASSWORD && email === CONSTANTES.EMAIL) {
       setAccess(true);
       navigate("/start/home");
-    } else if (email !== EMAIL) {
+    } else if (email !== CONSTANTES.EMAIL) {
       alert("Email incorrecto");
     } else {
       alert("Contraseña incorrecta");
     }
   };
 
-  // *************************************************
-
-  // LOGOUT
-
   const logOut = () => {
     setAccess(false);
   };
 
-  let [characters, setCharacters] = useState([]);
+  // ******************************************************************************
 
-  // API Y KEY
-  const KEY = "7194934f1270.fac66ff2b08baf717919";
-  const URL = "https://be-a-rym.up.railway.app/api/character/";
-
-  // ONSEARCH
   function onSearch(id) {
     for (const character of characters) {
       if (character.id === id)
         return window.alert("El personaje ya esta agregado!");
     }
-    axios(`${URL}${id}/?key=${KEY}`)
+    axios(`${CONSTANTES.URL}${id}/?key=${CONSTANTES.KEY}`)
       .then(({ data }) => {
         if (data.id) {
           setCharacters([...characters, data]);
@@ -59,14 +51,12 @@ function App() {
       .catch(() => window.alert("¡No hay personajes con este ID"));
   }
 
-  // ONCLOSE
   const onClose = (id) => {
     setCharacters(characters.filter((character) => id !== character.id));
   };
 
-  // ONRANDOM
   const onRandom = (id) => {
-    axios(`${URL}${id}/?key=${KEY}`).then(({ data }) => {
+    axios(`${CONSTANTES.URL}${id}/?key=${CONSTANTES.KEY}`).then(({ data }) => {
       if (data.id) {
         setCharacters([...characters, data]);
       } else {
@@ -75,19 +65,13 @@ function App() {
     });
   };
 
-  let { pathname } = useLocation();
-
-  const searchPath = (pathOfDetail) => {
-    let number = pathOfDetail.split("/");
-
-    return number.includes("detail");
-  };
+  // ******************************************************************************
 
   useEffect(() => {
     (!access &&
       (pathname === "/start/home" ||
         pathname === "/start/about" ||
-        searchPath(pathname)) &&
+        CONSTANTES.searchPath(pathname)) &&
       navigate("/login"))
 
       return ()=>{
