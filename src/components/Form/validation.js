@@ -1,6 +1,6 @@
 const regexEmail = /\S+@\S+\.\S+/;
 
-let Validate = (userData)=>{
+let validate = (userData)=>{
    const error = {}
    if(!userData.email){
        error.email = "Debe completar con el email"
@@ -19,4 +19,4 @@ let Validate = (userData)=>{
    
    return error}
 
-export default Validate;
+export default validate;

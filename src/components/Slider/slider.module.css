@@ -1,0 +1,32 @@
+.Slider {
+    width: 50vw;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.Slider ul {
+    display: flex;
+    width: 150vw;
+    margin-left: -2.9vw;
+    animation: cambio 9s infinite alternate linear;
+    cursor: pointer;
+}
+
+.Slider li {
+    width: 50vw;
+    list-style: none;
+}
+
+.Slider li img{
+    border-radius: 7px;
+}
+@keyframes cambio {
+    0%{margin-left: -2.9vw;}
+    27%{margin-left: -2.9vw;}
+
+    33%{margin-left: -52.9vw;}
+    60%{margin-left: -52.9vw;}
+
+    66%{margin-left: -102.9vw;}
+    100%{margin-left: -102.9vw;}
+}

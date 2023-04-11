@@ -1,0 +1,9 @@
+.Head {
+    width: 100vw;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background: #880101; 
+  }
+  

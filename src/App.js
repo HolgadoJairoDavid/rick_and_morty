@@ -8,6 +8,7 @@ import Detail from "./components/Detail/Detail";
 import Error from "./components/Error/Error";
 import Form from "./components/Form/Form";
 import CONSTANTES from "./App/CONSTANTES";
+import Inicio from "./components/Inicio/Inicio";
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
   let { pathname } = useLocation();
   const navigate = useNavigate();
 
-  // ***************************************************************************
+    // ******************************************************************************
 
   const login = ({ email, password }) => {
     if (password === CONSTANTES.PASSWORD && email === CONSTANTES.EMAIL) {
@@ -75,13 +76,15 @@ function App() {
       navigate("/login"))
 
       return ()=>{
-        setCharacters([])
+        pathname === '/login' && setCharacters([])
       }
   }, [access, navigate, pathname]);
 
+    // ******************************************************************************
+
   return (
     <div className="App">
-      {pathname === "/start/home" && (
+      {pathname !== "/login" && pathname !== '/'&&(
         <Nav
           onSearch={onSearch}
           onRandom={onRandom}
@@ -91,6 +94,7 @@ function App() {
       )}
 
       <Routes>
+        <Route path="/" element={<Inicio/>} />
         <Route path="/login" element={<Form login={login} />} />
 
         <Route

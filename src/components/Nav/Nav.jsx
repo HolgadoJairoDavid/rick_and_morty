@@ -1,42 +1,34 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
-import style from './nav.module.css'
+import style from './nav.module.css';
+import idGenerator from './CONSTANTES'
+import Head from '../Head/Head'
 
 const Nav = ({onSearch, onRandom, characters, logOut}) => {
+    let {pathname} = useLocation();
     const charactersId= [];
     for(const character of characters){
         charactersId.push(character.id)
     }
-    let id = Math.floor(Math.random()*(825-1+1)) +1;
 
-    function returnId (id) {
+    const returnId = (id) => {
         if(!charactersId.includes(id)) return id;
-        let newId = Math.floor(Math.random()*(825-1+1)) +1;
-        return returnId(newId)
-    }
-
-    // 
-    
-    const navigate = useNavigate ();
-
-    const handleLogOut = () => {
-        logOut()
-        navigate('/login')
+        return returnId(idGenerator())
     }
 
     return (
         <div className={style.Nav}>
-            <div className={style.Head}></div>
+            <Head />
             <div className={style.Heading}>
 
-            <button onClick={handleLogOut}>Log out</button>
+            <button onClick={()=> {logOut()}}>Log out</button>
 
             <NavLink to='/start/about' className={style.NavLink}><p>About</p></NavLink>
             <NavLink to='/start/home' className={style.NavLink}><p>Home</p></NavLink>
             
             </div>
-            <SearchBar onSearch={onSearch} />
-            <button onClick={()=> onRandom(returnId(id))}>Personaje Random</button> 
+            {pathname === '/start/home' && <SearchBar onSearch={onSearch} />}
+            {pathname === '/start/home' && <button onClick={()=> onRandom(returnId(idGenerator()))}>Random character</button> }
         </div>
     )
 }

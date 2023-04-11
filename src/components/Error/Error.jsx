@@ -1,4 +1,4 @@
-import error from './Error404.png'
+import error from '../../assets/img/Error404.png'
 import style from './error.module.css'
 
 const Error = () => {
