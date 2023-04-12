@@ -9,8 +9,12 @@ import Error from "./components/Error/Error";
 import Form from "./components/Form/Form";
 import CONSTANTES from "./App/CONSTANTES";
 import Inicio from "./components/Inicio/Inicio";
+import Favorites from "./components/Favorites/Favorites";
+import { useDispatch } from "react-redux";
+import { removeFav } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch()
 
   let [access, setAccess] = useState(false);
   let [characters, setCharacters] = useState([]);
@@ -54,6 +58,7 @@ function App() {
 
   const onClose = (id) => {
     setCharacters(characters.filter((character) => id !== character.id));
+    dispatch(removeFav(id))
   };
 
   const onRandom = (id) => {
@@ -107,6 +112,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
 
         <Route path="*" element={<Error />} />
+        <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
     </div>
   );

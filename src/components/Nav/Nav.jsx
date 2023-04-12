@@ -25,6 +25,9 @@ const Nav = ({onSearch, onRandom, characters, logOut}) => {
 
             <NavLink to='/start/about' className={style.NavLink}><p>About</p></NavLink>
             <NavLink to='/start/home' className={style.NavLink}><p>Home</p></NavLink>
+            <NavLink to="/favorites">
+      <button>Favorites</button>
+      </NavLink>
             
             </div>
             {pathname === '/start/home' && <SearchBar onSearch={onSearch} />}
