@@ -6,6 +6,7 @@
   justify-content: center;
   margin-right: 50px;
   font-family: "Raleway", sans-serif;
+
 }
 
 .SearchBar input {
@@ -34,6 +35,7 @@
   border: 1px solid #ff0a78;
   background: #ff0a78;
   font-family: "Raleway", sans-serif;
+
 }
 
 .SearchBar > button:hover {

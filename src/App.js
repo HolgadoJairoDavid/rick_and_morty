@@ -12,6 +12,7 @@ import Inicio from "./components/Inicio/Inicio";
 import Favorites from "./components/Favorites/Favorites";
 import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
+import style from './app.module.css'
 
 function App() {
   const dispatch = useDispatch()
@@ -75,7 +76,7 @@ function App() {
 
   useEffect(() => {
     (!access &&
-      (pathname === "/start/home" ||
+      (pathname === "/start/home" || pathname === '/favorites' ||
         pathname === "/start/about" ||
         CONSTANTES.searchPath(pathname)) &&
       navigate("/login"))
@@ -88,7 +89,7 @@ function App() {
     // ******************************************************************************
 
   return (
-    <div className="App">
+    <div className={style.App}>
       {pathname !== "/login" && pathname !== '/'&&(
         <Nav
           onSearch={onSearch}
