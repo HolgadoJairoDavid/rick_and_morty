@@ -90,7 +90,7 @@ function App() {
 
   return (
     <div className={style.App}>
-      {pathname !== "/login" && pathname !== '/'&&(
+      {(pathname === "/start/home" || pathname === "/start/about" || pathname === "/favorites" ||  CONSTANTES.searchPath(pathname) ) && (
         <Nav
           onSearch={onSearch}
           onRandom={onRandom}
