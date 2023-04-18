@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# **💪 HW2 | Web Server - Integration**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **🕒 DURACIÓN ESTIMADA**
 
-## Available Scripts
+90 minutos
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<div align="center">
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## **💻 RICK AND MORTY APP 💻**
 
-### `npm test`
+</div>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## **📝 INTRODUCCIÓN**
 
-### `npm run build`
+Hasta este momento hemos construido una Single Page Aplication por el lado del Front-End. Ahora llego la hora de construir un servidor que nos permita realizar acciones y comunicar información a nuestra App.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+En esta homework vamos a estructurar nuestro proyecto por el lado del Back-End, crear nuestro primer servidor y conectar Front-End con este.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## **📋 INSTRUCCIONES**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **👩‍💻 EJERCICIO 1 | Estructuración**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Dirígete al directorio en el que tienes tu proyecto **`Rick & Morty`** y ábrelo en tu VSC.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+1. En la raíz de tu proyecto crea una carpeta llamada **`Client`**. Todo el contenido trabajado durante el Módulo 2 guárdalo dentro de esta carpeta.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+2. Crea una segunda carpeta al mismo nivel **`Server`**. Dentro de esta crea una carpeta con el nombre **src** y otra con el nombre **test**.
 
-## Learn More
+3. Dentro de la carpeta **src** crea lo siguiente:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   -  Un archivo llamado **`index.js`**.
+   -  Una carpeta llamada **`controllers`**.
+   -  Una carpeta llamada **`routes`**.
+   -  Una carpeta llamada **`utils`**.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Copia el archivo [**data.js**](./data.js) que se encuentra en esta carpeta y pégalo dentro de tu pryecto en la carpeta **utils**.
 
-### Code Splitting
+</br >
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+### **👩‍💻 EJERCICIO 2 | Configuración**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+En la carpeta raíz de tu Back-End tendrás que ejecutar el comando:
 
-### Making a Progressive Web App
+```bash
+    npm init
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+De esta manera crearás un archivo **`package.json`**. En este solo deberás instalar la librería **nodemon** de la siguiente manera:
 
-### Advanced Configuration
+```bash
+    npm install nodemon
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Una vez hecho esto, dentro del objeto **scripts** tienes que dejar el script **`start`** de la siguiente manera:
 
-### Deployment
+```json
+    "start": "nodemon ./src/index.js"
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+<br />
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **👩‍💻 EJERCICIO 3 | Servidor**
+
+Dírigete al archivo llamado **`index.js`** que creaste en el ejercicio 1. Dentro de este deberás:
+
+1. Importar **http** desde el módulo **`http`**.
+
+2. A partir de **http** crea y levanta un servidor en el puerto **3001**.
+
+3. Copia y pega la siguiente línea dentro del callback de tu servidor
+
+   ```js
+   res.setHeader('Access-Control-Allow-Origin', '*');
+   ```
+
+4. Crea un condicional que verfique si la **url** incluye el string "**`/rickandmorty/character`**". En el caso de que si lo haga deberás obtener el **id** del personaje que te llega por la **url**. Luego de obtener el **id**, búscalo dentro del archivo **`data.js`** (deberás importar el archivo). Ten en cuenta que el **id** de la url es un string, y los **id** de los personajes son números.
+
+> [**NOTA**]: la url te llegará con la siguiente estructura. Ejemplo: **`/rickandmorty/character/:id`**. Piensa en una lógica que te permita obtener el **id** del final.
+
+5. Envía como respuesta un JSON que contenga al personaje.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 4 | Front & Back**
+
+1. Abre tu proyecto en la carpeta **`Client`** y dirígete al archivo **`App.js`** en el que realizarás un pequeño cambio.
+
+2. Busca tu función **`onSearch`**. Deberás reemplazar la url a la que se le está haciendo la petición:
+
+   -  **URL anitgua**: "**https://rickandmortyapi.com/api/character/${id}**".
+   -  **URL por la que debes reemplazar**: "**http://localhost:3001/rickandmorty/character/${id}**".
+
+3. Ahora dirígete a tu componente **`Detail`** . Aquí tienes un **`useEffect`** que también está haciendo una petición a la API, por lo que debemos hacer el mismo cambio que antes:
+
+   -  **URL anitgua**: "**https://rickandmortyapi.com/api/character/${id}**".
+   -  **URL por la que debes reemplazar**: "**http://localhost:3001/rickandmorty/character/${id}**".
+
+> **[NOTA]:** recuerda agregar el **id** como parámetro al final.
+
+<br />
+
+---
+
+### **👀 ¡COMPROBEMOS NUESTRO TRABAJO!**
+
+Ahora comprobaremos que todo funciona correctamente. Para esto:
+
+1. Abre dos terminales. En una deberás levantar tu proyecto del lado Front-End, y en la otra levantar tu proyecto en el lado Back-End.
+
+2. Una vez que todo esté arriba, intenta utilizar tu aplicación. Trae personajes e ingresa a sus detalles para chequear que no haya ningún error.
+
+> [**NOTA**]: solo podrás buscar a los personajes con id **1**, **2**, **3**, **4** y **5**, ya que estos son los que tienes guardados en tu archivo **`data.js`**.
+
+</br >
+
+<img src="./img/example.gif" alt="" />

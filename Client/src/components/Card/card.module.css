@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+
+.Card {
+  background: #ff0a78c2;
+  text-align: center;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px hwb(340 39% 0% / 0.89);
+  padding: 6px;
+  display: flex;
+  transition: all 3s ease;
+  flex-direction: column;
+  position: relative;
+  font-family: "Raleway", sans-serif;
+}
+
+.Card:hover {
+  bottom: 5px;
+ 
+}
+
+.Card img {
+  border-radius: 5px;
+}
+
+.Name {
+  position: relative;
+  left: 0px;
+  bottom: 55.5px;
+  width: fit-content;
+  background: #ffff0c;
+  color: black;
+}
+
+.Link {
+  text-decoration: none;
+  height: 0px;
+}
+
+.Card h2 {
+  font-size: 18px;
+  position: relative;
+  bottom: 42.5px;
+  
+}
+
+@media screen and (max-width: 600px) {
+  .Card > h2 {
+    font-size: 16px;
+    position: relative;
+    bottom: 37.5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .Card > h2 {
+    font-size: 18px;
+    position: relative;
+    bottom: 37.5px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .Card > .Name {
+    position: relative;
+    left: 0px;
+    bottom: 55.5px;
+  }
+}
+.Close button {
+  width: fit-content;
+  color: #fff;
+  padding: 7px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  align-self: flex-end;
+  outline: none;
+  border-radius: 50%;
+  border: 2px solid #d90429;
+  background: #d90429;
+}
+.Card > .Close > button:hover {
+  background: #fff;
+  color: #d90429;
+}
+
+.Close {
+  align-self: flex-end;
+  min-height: 70%;
+  position: absolute;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: 0.1s;
+  opacity: 0;
+  z-index: 0;
+}
+
+.Close:hover {
+  opacity: 1;
+}
+
+.FavoritesButton {
+  background: none;
+  border: none;
+  width: fit-content;
+  cursor: pointer;
+  position: absolute;
+  font-size: 20px;
+  z-index: 1;
+}
