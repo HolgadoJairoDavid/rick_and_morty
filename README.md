@@ -1,8 +1,8 @@
-# **💪 HW2 | Web Server - Integration**
+# **💪 HW3 | Promises - Integration**
 
 ## **🕒 DURACIÓN ESTIMADA**
 
-90 minutos
+XX minutos
 
 <br />
 
@@ -16,9 +16,7 @@
 
 ## **📝 INTRODUCCIÓN**
 
-Hasta este momento hemos construido una Single Page Aplication por el lado del Front-End. Ahora llego la hora de construir un servidor que nos permita realizar acciones y comunicar información a nuestra App.
-
-En esta homework vamos a estructurar nuestro proyecto por el lado del Back-End, crear nuestro primer servidor y conectar Front-End con este.
+En esta homework crearemos una ruta GET que realizará una peticion asincrónica a la API de Rick & Morty. De esta manera podremos obtener un personaje por **id**, y podremos enviar esta información a nuestro Front-End.
 
 <br />
 
@@ -26,105 +24,47 @@ En esta homework vamos a estructurar nuestro proyecto por el lado del Back-End, 
 
 ## **📋 INSTRUCCIONES**
 
-### **👩‍💻 EJERCICIO 1 | Estructuración**
+### **👩‍💻 EJERCICIO 1 | Controlador**
 
-Dirígete al directorio en el que tienes tu proyecto **`Rick & Morty`** y ábrelo en tu VSC.
+Instala la librería **`axios`**. Luego dirígete a la carpeta **controllers** y crea un archivo llamado **`getCharById.js`**. Dentro de este archivo deberás:
 
-1. En la raíz de tu proyecto crea una carpeta llamada **`Client`**. Todo el contenido trabajado durante el Módulo 2 guárdalo dentro de esta carpeta.
+1. Crea y exporta una función llamada **`getCharById`**. Esta recibirá dos parámetros: **res** y **id**.
 
-2. Crea una segunda carpeta al mismo nivel **`Server`**. Dentro de esta crea una carpeta con el nombre **src** y otra con el nombre **test**.
+2. Dentro de esta función deberás realizar una petición a la API **`https://rickandmortyapi.com/api/character/:id`** de Rick & Morty. Utiliza promesas y no olvides que el **id** que utilices debe ser el que recibes por parámetro.
 
-3. Dentro de la carpeta **src** crea lo siguiente:
+> **[NOTA]:** tendrás que importar **`axios`**.
 
-   -  Un archivo llamado **`index.js`**.
-   -  Una carpeta llamada **`controllers`**.
-   -  Una carpeta llamada **`routes`**.
-   -  Una carpeta llamada **`utils`**.
+3. Una vez que tienes la respuesta de tu petición crea un objeto en el que guardes las siguientes propiedades del personaje: **id** (lo recibes por parámetro), **name**, **gender**, **species**, **origin**, **image** y **status**.
 
-4. Copia el archivo [**data.js**](./data.js) que se encuentra en esta carpeta y pégalo dentro de tu pryecto en la carpeta **utils**.
+> [**NOTA**]: revisa cómo es la estructura de la respuesta que recibes de la API para poder acceder correctamente a los datos.
 
-</br >
+4. Una vez creado el objeto, devuelve una respuesta en formato JSON y status igual a 200 con el personaje que obtuviste.
 
----
-
-### **👩‍💻 EJERCICIO 2 | Configuración**
-
-En la carpeta raíz de tu Back-End tendrás que ejecutar el comando:
-
-```bash
-    npm init
-```
-
-De esta manera crearás un archivo **`package.json`**. En este solo deberás instalar la librería **nodemon** de la siguiente manera:
-
-```bash
-    npm install nodemon
-```
-
-Una vez hecho esto, dentro del objeto **scripts** tienes que dejar el script **`start`** de la siguiente manera:
-
-```json
-    "start": "nodemon ./src/index.js"
-```
+5. Concatena un **`.catch`** al final de la promesa para poder manejar el error. Dentro de él deberás devolver una respuesta con status **`500`**, un Content-Type igual a **`text/plain`**, y finalmente responder con la propiedad **`message`** del error.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 3 | Servidor**
+### **👩‍💻 EJERCICIO 2 | Ruta**
 
-Dírigete al archivo llamado **`index.js`** que creaste en el ejercicio 1. Dentro de este deberás:
+Dirígete al archivo **`index.js`** y elimina el condicional que creaste en la homework anterior. También elimina la importación y el archivo **`data.js`**.
 
-1. Importar **http** desde el módulo **`http`**.
+1. Importa tu controlador **`getCharById`**.
 
-2. A partir de **http** crea y levanta un servidor en el puerto **3001**.
+2. Crea un condicional que pregunte si la **url** incluye el string "**`/rickandmorty/character`**". En el caso de que si lo incluya deberás ejecutar el controlador que creamos en el ejercicio anterior pasándole como argumentos:
 
-3. Copia y pega la siguiente línea dentro del callback de tu servidor
+   -  El primer parámetro debe ser parámetro **`res`**.
+   -  El segundo parámetro debe ser el **id** del personaje que recibes mediante la como parámetro.
 
-   ```js
-   res.setHeader('Access-Control-Allow-Origin', '*');
-   ```
-
-4. Crea un condicional que verfique si la **url** incluye el string "**`/rickandmorty/character`**". En el caso de que si lo haga deberás obtener el **id** del personaje que te llega por la **url**. Luego de obtener el **id**, búscalo dentro del archivo **`data.js`** (deberás importar el archivo). Ten en cuenta que el **id** de la url es un string, y los **id** de los personajes son números.
-
-> [**NOTA**]: la url te llegará con la siguiente estructura. Ejemplo: **`/rickandmorty/character/:id`**. Piensa en una lógica que te permita obtener el **id** del final.
-
-5. Envía como respuesta un JSON que contenga al personaje.
+   > **[NOTA]:** dentro del parámetro **`req.url`** está el id del personaje.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 4 | Front & Back**
+### **👀 COMPROBEMOS...**
 
-1. Abre tu proyecto en la carpeta **`Client`** y dirígete al archivo **`App.js`** en el que realizarás un pequeño cambio.
-
-2. Busca tu función **`onSearch`**. Deberás reemplazar la url a la que se le está haciendo la petición:
-
-   -  **URL anitgua**: "**https://rickandmortyapi.com/api/character/${id}**".
-   -  **URL por la que debes reemplazar**: "**http://localhost:3001/rickandmorty/character/${id}**".
-
-3. Ahora dirígete a tu componente **`Detail`** . Aquí tienes un **`useEffect`** que también está haciendo una petición a la API, por lo que debemos hacer el mismo cambio que antes:
-
-   -  **URL anitgua**: "**https://rickandmortyapi.com/api/character/${id}**".
-   -  **URL por la que debes reemplazar**: "**http://localhost:3001/rickandmorty/character/${id}**".
-
-> **[NOTA]:** recuerda agregar el **id** como parámetro al final.
-
-<br />
-
----
-
-### **👀 ¡COMPROBEMOS NUESTRO TRABAJO!**
-
-Ahora comprobaremos que todo funciona correctamente. Para esto:
-
-1. Abre dos terminales. En una deberás levantar tu proyecto del lado Front-End, y en la otra levantar tu proyecto en el lado Back-End.
-
-2. Una vez que todo esté arriba, intenta utilizar tu aplicación. Trae personajes e ingresa a sus detalles para chequear que no haya ningún error.
-
-> [**NOTA**]: solo podrás buscar a los personajes con id **1**, **2**, **3**, **4** y **5**, ya que estos son los que tienes guardados en tu archivo **`data.js`**.
-
-</br >
+Levanta tu proyecto del lado Front-End y Back-End. Hasta este momento deberías poder utilizar tu aplicación con normalidad y poder buscar un personaje con cualquier **id**.
 
 <img src="./img/example.gif" alt="" />

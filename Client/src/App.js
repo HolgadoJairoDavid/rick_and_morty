@@ -50,8 +50,6 @@ function App() {
       .then(({ data }) => {
         if (data.id) {
           setCharacters([...characters, data]);
-        } else {
-          window.alert("¡No hay personajes con este ID");
         }
       })
       .catch(() => window.alert("¡No hay personajes con este ID"));
