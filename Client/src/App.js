@@ -24,16 +24,15 @@ function App() {
 
     // ******************************************************************************
 
-  const login = ({ email, password }) => {
-    if (password === CONSTANTES.PASSWORD && email === CONSTANTES.EMAIL) {
-      setAccess(true);
-      navigate("/start/home");
-    } else if (email !== CONSTANTES.EMAIL) {
-      alert("Email incorrecto");
-    } else {
-      alert("Contraseña incorrecta");
-    }
-  };
+  const login=(userData) => {
+    const { email, password } = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login';
+    axios(URL + `/?email=${email}&password=${password}`).then(({ data }) => {
+       const { access } = data;
+       setAccess(access);
+       access && navigate('/start/home')
+    });
+ }
 
   const logOut = () => {
     setAccess(false);
@@ -50,6 +49,7 @@ function App() {
       .then(({ data }) => {
         if (data.id) {
           setCharacters([...characters, data]);
+
         }
       })
       .catch(() => window.alert("¡No hay personajes con este ID"));

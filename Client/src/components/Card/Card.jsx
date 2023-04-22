@@ -12,6 +12,7 @@ function Card(props) {
           setIsFav(false);
           props.removeFav(props.id);
       } else if (!isFav) {
+        console.log(props.myFavorites)
           setIsFav(true);
           props.addFav(props);
       }
