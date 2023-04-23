@@ -45,6 +45,7 @@ const Favorites = ({ myFavorites, removeFav }) => {
       {myFavorites.map((props) => {
         return (
           <Card
+                      key={props.id}
                       id={props.id}
                       name={props.name}
                       status={props.status}

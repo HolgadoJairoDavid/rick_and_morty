@@ -37,6 +37,8 @@ const reducer = (state = initialState, action) => {
         myFavorites: [...orderFav],
       };
 
+    case 'CLEAN':
+      return { ...state, myFavorites: action.payload, allCharacters: action.payload };
 
     default:
       return state;

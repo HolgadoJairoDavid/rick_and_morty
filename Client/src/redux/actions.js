@@ -4,6 +4,7 @@ const REMOVE_FAV = "REMOVE_FAV";
 const FILTER = "FILTER";
 const ORDER = "ORDER";
 const ALL = 'ALL';
+const CLEAN = 'CLEAN'
 
 
 export const addFav = (character) => {
@@ -48,4 +49,16 @@ export const all = ()=>{
   return{
       type: ALL
   }
+}
+
+export const cleanFavorites = () => {
+  const endpoint = 'http://localhost:3001/rickandmorty/fav/clean';
+  return (dispatch) => {
+     axios.delete(endpoint).then(({ data }) => {
+        return dispatch({
+           type: CLEAN,
+           payload: data,
+     });
+     });
+  };
 }

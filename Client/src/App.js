@@ -12,6 +12,7 @@ import Inicio from "./components/Inicio/Inicio";
 import Favorites from "./components/Favorites/Favorites";
 import { useDispatch } from "react-redux";
 import { removeFav } from "./redux/actions";
+import {cleanFavorites} from './redux/actions'
 import style from './app.module.css'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
 
   const logOut = () => {
     setAccess(false);
+    dispatch(cleanFavorites())
   };
 
   // ******************************************************************************
@@ -49,7 +51,6 @@ function App() {
       .then(({ data }) => {
         if (data.id) {
           setCharacters([...characters, data]);
-
         }
       })
       .catch(() => window.alert("¡No hay personajes con este ID"));
