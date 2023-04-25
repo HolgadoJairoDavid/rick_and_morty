@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { addFav, removeFav } from "../../redux/actions";
 
 function Card(props) {
-  let { pathname } = useLocation();
+  const {pathname} = useLocation()
   const [isFav, setIsFav] = useState(false);
 
   const handleFavorite = () => {
@@ -39,9 +39,9 @@ function Card(props) {
       )}
 
       <div className={style.Close}>
-        {pathname !== "/favorites" && (
-          <button onClick={() => props.onClose(props.id)}>X</button>
-        )}
+        
+         {pathname !== '/favorites' && <button onClick={() => props.onClose(props.id)}>X</button>}
+        
       </div>
       <img src={props.image} alt="" />
 

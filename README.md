@@ -1,4 +1,4 @@
-# **💪 HW5 | Express - Integration**
+# **💪 HW7 | Testing - Integration**
 
 ## **🕒 DURACIÓN ESTIMADA**
 
@@ -16,14 +16,11 @@ XX minutos
 
 ## **📝 INTRODUCCIÓN**
 
-En esta homework crearemos un servidor con la librería de express. A su vez crearemos distintas rutas, y también simularemos una base de datos apra nuestros personajes favoritos.
+En esta homework construiremos algunos test para validar que nuestro proyecto esté funcionando correctamente.
 
-Esta vez las rutas que crearemos son:
+Te daremos instrucciones solo para construir algunos test del lado de tu Back-End, pero tu puedes crear todos los que gustes.
 
--  **`GET getCharById`**: esta ruta obtendrá personajes de la API mediante su **id**.
--  **`GET login`**: esta ruta es la que le dará o no acceso al usuario para usar la aplicación.
--  **`POST postFav`**: esta ruta guardará en nuestro servidor a nuestros personajes favoritos.
--  **`DELETE deleteFav`**: esta ruta eliminará a un personaje de nuestros favoritos.
+Finalmente te brindaremos información para que aprendas a testear tu Front-End.
 
 <br />
 
@@ -31,199 +28,139 @@ Esta vez las rutas que crearemos son:
 
 ## **📋 INSTRUCCIONES**
 
-### **👩‍💻 EJERCICIO 1 | Servidor**
+### **👩‍💻 EJERCICIO 01 | Dependencias**
 
-Instala la librería **`express`**. Luego dirígete al archivo **`index.js`** y elimina todo su contenido. Ahora crearemos el servidor con esta librería.
+Instala las siguientes dependencias en el **`package.json`** de tu servidor:
 
-1. Dentro del archivo **index.js** importa **`express`** e inicializa un nuevo servidor en el puerto 3001. Esta sería una forma de seguir buenas prácticas:
+-  **jest**
+-  **supertest**
 
-```js
-const express = require('express');
-const server = express();
-const PORT = 3001;
+Además, dentro del **`package.json`** deberás agregar el siguiente script:
 
-server.listen(PORT, () => {
-   console.log('Server raised in port: ' + PORT);
-});
+```bash
+   "test": "jest --detectOpenHandles"
 ```
 
-¡Acabas de crear tu servidor con Express! 😎
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 02 | Modularizar el Server**
+
+1. Dentro de la carpeta **src** debes crear un archivo llamado **`app.js`**.
+
+2. Luego de crealo tendrás que copiar y pegar todo lo que tienes en tu archivo **`index.js`** dentro de este, exceptuando la ejecución de la función **listen**. Esta función debe permanecer en tu archivo **`index.js`**.
+
+3. Dentro de tu archivo **`app.js`** debes exportar tu servidor, y luego importarlo dentro de tu archivo **`index.js`**.
+
+> [**NOTA**]: ten en cuenta que la variable PORT (si es que tienes una) debe permanecer en el archivo **`index`**.
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 2 | GET getCharById**
+### **👩‍💻 EJERCICIO 03 | Testing Template**
 
-En este ejercicio construiremos la nueva versión de este controlador para que nos sirva con **express**. Dirígete al archivo **`getCharById.js`** y elimina todo el contenido que hay dentro de él.
+Dirígete a la carpeta **test**. En esta crea un archivo llamado **`index.test.js`**. Aquí desarrollaremos el testing.
 
-1. Crea una constante llamada **`URL`** y guarda lo siguiente: "**https://rickandmortyapi.com/api/character/**".
+1. Dentro del archivo que acabas de crear tendrás que importar los siguientes elementos:
 
-2. Crea una función con el nombre **`getCharById`** y expórtala. Recibe por parámetro a los objetos **`req`** y **`res`**.
-
-3. Dentro de la función haz una petición a la API a partir del **id** que recibes por **`Params`**.
-
-> [**NOTA**]: no olvides importar **`axios`**.
-
-4. En el caso de que todo salga OK y se encuentre a un personaje, devuelve un JSON con las propiedades: **id**, **status**, **name**, **species**, **origin**, **image** y **gender**.
-
-5. En el caso de que todo salga OK pero no se encuentre a un personaje, devuelve un mensaje con **status 404** que diga _Not fount_.
-
-6. Si hay un error debes responder con un status 500, y un texto con la propiedad **`message`** de **error**.
-
-</br>
-
----
-
-### **👩‍💻 EJERCICIO 3 | GET login**
-
-En este ejercicio construiremos un controlador que validará que el usuario que se está logeando tenga permiso. Para definir quienes tendrán permisos ve a tu carpeta **utils** y crea un archivo llamado **`users.js`**. Aquí solo deberas exportar un arrgelo con un solo objeto. Este objeto debe tener esta estructura:
-
-```js
-module.exports = [{email: /*Tu email*/, password: /*Tu password*/}];
-```
-
-1. Dentro de tu carpeta **controllers** crea un archivo llamado **`login.js`**. Dentro de este deberás crear y exportar una función que recibirá por parámetro a los objetos **`req`** y **`res`**.
-
-2. Deberás obtener los datos **email** y **password** que recibes mediante **`Query`**. Una vez hecho esto, importa tu arreglo de usuarios y verifica si dentro de ese arreglo hay un usuario que coincida tanto su email y su contraseña con los que recibes por **`Query`**.
-
-3. En el caso de que haya un usuario que cumpla esa condición, entonces debes devolver una respuesta con **status 200**, y, en formato JSON, un objeto con una propiedad **access: `true`**. Caso contrario devuelve lo mismo pero con la propiedad **access: `false`**.
-
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 4 | POST & DELETE favorites**
-
-Dentro de tu carpeta **controllers** crea un archivo con el nombre **`handleFavorites.js`**. Dentro de este archivo deberás declarar un **arreglo vacío** llamado **`myFavorites`**.
-
-> [**NOTA**]: es importante que **NO** declares este arreglo como constante ya que lo modificaremos.
-
-1. Crea una función llamada **`postFav`** que reciba por parámetro los objetos **`req`** y **`res`**.
-
-2. Agrega en tu arreglo de favoritos el personaje que estarás recibiendo por **`Body`**.
-
-3. Finalmente devuelve tu arreglo de favoritos en formato JSON.
-
-4. Crea una función llamada **`deleteFav`** que reciba por parámetro los objetos **`req`** y **`res`**.
-
-5. Filtra a tus personajes favoritos de manera que elimines aquel que tiene el mismo **id** que recibes por **`Params`**.
-
-6. Finalmente devuelve tu arreglo de favoritos en formato JSON.
-
-7. Exporta ambas funciones.
-
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 5 | Rutas**
-
-Dirígete a la carpeta **routes** y crea un archivo con el nombre **`index.js`**. Dentro de este deberás importar todos tus controladores. También deberás importar las función **`Router`** de **express**. Crea una ruta para cada controlador con los siguientes paths:
-
--  GET **`getCharById`**: "/character/:id"
--  GET **`login`**: "/login"
--  POST **`postFav`**: "/fav"
--  DELETE **`deleteFav`**: "/fav/:id"
-
-Finalmente exporta tu router.
-
-<br />
-
----
-
-### **👩‍💻 EJERCICIO 6 | Middlewares**
-
-Dirígete al archivo **`index.js`** en el que tienes tu servidor. Aquí deberás:
-
-1. Importar tu router.
-
-2. Copia este middleware en tu servidor:
-
-   ```js
-   server.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Credentials', 'true');
-      res.header(
-         'Access-Control-Allow-Headers',
-         'Origin, X-Requested-With, Content-Type, Accept'
-      );
-      res.header(
-         'Access-Control-Allow-Methods',
-         'GET, POST, OPTIONS, PUT, DELETE'
-      );
-      next();
-   });
+   ```javascript
+   const app = require('../src/app');
+   const session = require('supertest');
+   const agent = session(app);
    ```
 
-3. Crea un middleware que ejecute a **`express.json()`**.
+2. Crea la primer función **describe** con el mensaje **"_Test de RUTAS_"**.
 
-4. Crea un middleware que agregue el string "**`/rickandmorty`**" antes de cada una de tus rutas.
+Recuerda que todos los ejercicios de testing serán asincrónicos, ya que estaremos ejecutando rutas. ¡Puedes utilizar **promesas** o **async await**!
 
 <br />
 
 ---
 
-### **👩‍💻 EJERCICIO 7 | Back & Front**
+### **👩‍💻 EJERCICIO 04 | GET /rickandmorty/character/:id**
 
-Llegó el momento para conectar nuestro nuevo servidor con nuestro Front-End. Para este ejercicio simplemente tendrás que reemplazar código de tu Front-End por los distintos snippets que te presentaremos a continuación. Para esto dirígete a tu carpeta **Client**.
+Crea un **describe** con el mensaje '**`GET /rickandmorty/character/:id`**'.
 
-1. Dirígete a tu archivo **`App.js`** y busca tu función **`login`**. Elimina por completo esta función, ya que la reemplazaremos con esta:
+1. **PRIMER TEST**:
 
-   ```js
-   function login(userData) {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
-         setAccess(data);
-         access && navigate('/home');
-      });
-   }
+   Crea un **it** con el mensaje '**`Responde con status: 200`**'. En su **callback** pega el siguiente código:
+
+   ```javascript
+   await agent.get('/rickandmorty/character/1').expect(200);
    ```
 
-2. Ahora conectaremos nuestra ruta **postFav**. Para esto dirígete a tu archivo **`actions.js`** y reemplaza tu función addFav. Luego dirígete a tu **`reducer`** y reemplaza tu caso "ADD_FAV".
+2. **SEGUNDO TEST**:
+
+   Crea un **it** con el mensaje '**`Responde un objeto con las propiedades: "id", "name", "species", "gender", "status", "origin" e "image"`**'.
+
+   Aquí tendrás que obtener la respuesta de esta ruta. Valida si en la propiedad **body** de la respuesta obtienes todas las propiedades correspondientes.
+
+> [**PISTA**]: podrías validar esto con el métodos [**`toHaveProperty`**](https://jestjs.io/docs/expect#tohavepropertykeypath-value).
+
+3. **TERCER TEST**:
+
+   Crea un **it** con el mensaje '**`Si hay un error responde con status: 500`**'. Aquí tendrás que validar que este será el status si se ingresa un id que no existe para buscar al personaje. Es decir, tendrás que forzar el error.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 05 | GET /rickandmorty/login**
+
+Crea un nuevo describe con el comentario: **"_GET /rickandmorty/login_"**. En este test tendrás que validar dos cosas:
+
+1. Valida que, si ejecutas esta ruta pasándole la información de login (email y password) correctas, debes obtener un objeto como este:
 
    ```js
-   import axios from "axios";
-
-   // ACTION | addFav
-   export const addFav = (character) => {
-      const endpoint = 'http://localhost:3001/rickandmorty/fav';
-      return (dispatch) => {
-         axios.post(endpoint, character).then(({ data }) => {
-            return dispatch({
-               type: 'ADD_FAV',
-               payload: data,
-            });
-         });
-      };
-   };
-
-   // REDUCER | ADD_FAV
-   case 'ADD_FAV':
-         return { ...state, myFavorites: payload, allCharacters: payload };
+it(`Información correcta`, async ()=> {
+            const response = await agent.get('/rickandmorty/login/?email=jairodavidholgado@gmail.com&password=jairo18')
+            
+            expect(response.body).toEqual({
+                access: true
+             })
+        });
    ```
 
-> [**NOTA**]: debes importar **axios**.
+> [**NOTA**]: recuerda que la información la debes enviar por **`Query`**. Además, recuerda que la información de login se encuentra en tu achivo **`/src/utils/index`**.
 
-3. Por último nos queda conectar nuestra ruta **deleteFav**. Para esto dirígete a tu archivo **`actions.js`** y reemplaza tu función removeFav. Luego dirígete a tu **`reducer`** y reemplaza tu caso "REMOVE_FAV".
+2. Ahora tendrás que testear que en el caso de enviar la información incorrecta la porpiedad **access** sea **`false`**.
 
-   ```js
-   // ACTION | removeFav
-   export const removeFav = (id) => {
-      const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
-      return (dispatch) => {
-         axios.delete(endpoint).then(({ data }) => {
-            return dispatch({
-               type: 'REMOVE_FAV',
-               payload: data,
-         });
-         });
-      };
-   };
+<br />
 
-   // REDUCER | REMOVE_FAV
-   case 'REMOVE_FAV':
-         return { ...state, myFavorites: payload };
-   ```
+---
+
+### **👩‍💻 EJERCICIO 06 | POST /rickandmorty/fav**
+
+Crea un nuevo describe con el texto : **"_POST /rickandmorty/fav_"**. Dentro de este test tendrás que validar:
+
+1. Lo que envíes por body debe ser devuelto en un arreglo.
+
+2. Si vuelves a enviar un nuevo elemento por body, este debe ser devuelto en un arreglo que incluye un elemento enviado previamente.
+
+<br />
+
+---
+
+### **👩‍💻 EJERCICIO 07 | DELETE /rickandmorty/fav/:id**
+
+Crea un nuevo describe con el texto : **"_DELETE /rickandmorty/fav/:id_"**. Dentro de este test tendrás que validar:
+
+1. Primero deberás testear que lo que devuelva esta ruta, en el caso de que no haya ningún personaje con el ID que envías, sea un arreglo con los elementos previos sin modificar.
+
+2. Luego debes testear que cuando envías un ID válido se elimine correctamente al personaje.
+
+<br />
+
+---
+
+## **💪 EXTRA CREDIT | Testing Front-End**
+
+Te invitamos a que revises los **`Recursos adicionales`** para investigar como testear un **Front-End** con React y Jest.
+
+## **🔎 Recursos adicionales**
+
+-  Documentación [**Matchers From Jest**](https://jestjs.io/docs/using-matchers)
+-  Documentación [**React-Jest Testing**](https://testing-library.com/docs/react-testing-library/intro/)
+-  Documentación [**Jest - Enzyme**](https://enzymejs.github.io/enzyme/docs/guides/jest.html)
