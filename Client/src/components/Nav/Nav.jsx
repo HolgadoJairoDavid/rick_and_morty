@@ -21,17 +21,17 @@ const Nav = ({onSearch, onRandom, characters, logOut}) => {
             <Head />
             <div className={style.Heading}>
 
-            <button onClick={()=> {logOut()}}>Log out</button>
+            <button className={style.LogOut} onClick={()=> {logOut()}}>Log out</button>
 
             <NavLink to='/start/about' className={style.NavLink}><p>About</p></NavLink>
             <NavLink to='/start/home' className={style.NavLink}><p>Home</p></NavLink>
             <NavLink to="/favorites">
-      <button>Favorites</button>
+      <button className={style.LogOut}>Favorites</button>
       </NavLink>
             
             </div>
             {pathname === '/start/home' && <SearchBar onSearch={onSearch} />}
-            {pathname === '/start/home' && <button onClick={()=> onRandom(returnId(idGenerator()))}>Random character</button> }
+            {pathname === '/start/home' && <button  className={style.Button}onClick={()=> onRandom(returnId(idGenerator()))}>Random character</button> }
         </div>
     )
 }

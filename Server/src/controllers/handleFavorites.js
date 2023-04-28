@@ -11,8 +11,7 @@ myFavorites.push(body)
 const deleteFav=(req, res)=> {
     const {id} = req.params
 
-    const newFavorites = myFavorites.filter(char => char.id !== +id);
-    myFavorites= newFavorites;
+    myFavorites = myFavorites.filter(char => char.id !== +id);
 
     res.status(200).json(myFavorites)
 }

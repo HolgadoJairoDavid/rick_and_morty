@@ -53,9 +53,6 @@ const Favorites = ({ myFavorites, removeFav }) => {
                       gender={props.gender}
                       origin={props.origin.name}
                       image={props.image}
-                      onClose={() => {
-                          removeFav(props.id);
-                      }}
                   />
         );
       })}

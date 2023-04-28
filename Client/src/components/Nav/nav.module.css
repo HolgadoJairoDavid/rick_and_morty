@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
 
-.Nav button {
+.Nav .Button {
   margin-top: 20px;
   min-width: 130px;
   height: 40px;
@@ -19,12 +19,12 @@
   z-index: 0;
 }
 
-.Nav button:hover {
+.Nav .Button:hover {
   background: #fff;
   color: #ff0a78;
 }
 
-.Heading button {
+.Heading .Button {
   cursor: pointer;
   background: #ffffff00;
   border: none;
@@ -55,4 +55,18 @@
   position: fixed;
   z-index: 100;
   top: 0;
+}
+
+.Heading .LogOut {
+  color: #fff;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px;
+  z-index: 100;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  height: 40px;
+  margin-top: 4px;
 }

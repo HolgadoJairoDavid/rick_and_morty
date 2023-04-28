@@ -35,7 +35,7 @@
   border: 1px solid #ff0a78;
   background: #ff0a78;
   font-family: "Raleway", sans-serif;
-
+  margin-top: 20px;
 }
 
 .SearchBar > button:hover {
