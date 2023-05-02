@@ -38,5 +38,11 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <div class="lds-ring loader" id="loader"><div></div><div></div><div></div><div></div></div>
+    <script>
+window.addEventListener('load', ()=>{
+  document.querySelector('#loader').classList.toggle('loader2')
+})
+    </script>
   </body>
 </html>

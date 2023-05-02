@@ -1,10 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+
+
 .Container {
   display: grid;
   grid-template-columns: 24% 24% 24% 24%;
   grid-column-gap: 1.8em;
   margin-left: 1%;
   margin-right: 4%;
-  margin-top: 80px;
+  margin-top: 150px;
 }
 
 @media screen and (max-width: 900px) {
@@ -52,4 +55,92 @@
   left: 15px;
   display: block;
   z-index: 10;
+  margin-bottom: 10px;
+}
+
+.Options2 {
+  width: 70vw;
+  position: relative;
+  top: 60px;
+  left: 23vw;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-column-gap: 2em;
+}
+
+.Select {
+  outline: none;
+  border: none;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 3px;
+  -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   box-shadow:none;
+   border:0!important;
+   background: #fcfffe;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#000000;
+   cursor:pointer;
+   font-size: 1em;
+   font-family: 'Open Sans', sans-serif;
+}
+
+.Select::-ms-expand {
+  display: none;
+}
+
+.SeeAll {
+  cursor: pointer;
+  margin-top: 20px;
+  min-width: 130px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: 1px solid #ff0a78;
+  background: #ff0a78;
+  font-family: "Raleway", sans-serif;
+  z-index: 0;
+}
+
+.SeeAll:hover {
+  background: #fff;
+  color: #ff0a78;
+}
+
+.Selected{
+  position: relative;
+   display: flex;
+   width: 20em;
+   height: 3em;
+   line-height: 3;
+   overflow: hidden;
+   border-radius: .25em;
+}
+
+.Selected::after {
+  content: '\25BC';
+  position: absolute;
+  top: 5px;
+  right: 0;
+  padding: 0 1em;
+  background: #2b2e2e;
+  cursor:pointer;
+  pointer-events:none;
+  transition:.25s all ease;
+  height: 2.7em;
+}
+.Selected:hover::after {
+  color: #ff0a78;
 }

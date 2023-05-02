@@ -14,8 +14,6 @@ router.post('/fav', postFav)
 
 router.delete('/fav/clean', cleanFavs)
 
-router.delete('/fav/:id', (req, res)=> {
-    deleteFav(req, res)
-})
+router.delete('/fav/:id', deleteFav)
 
 module.exports = router //PRESTÁ ATENCIÓN

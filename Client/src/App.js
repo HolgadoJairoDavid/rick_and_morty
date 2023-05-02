@@ -35,7 +35,7 @@ function App() {
     const { data } = await axios(URL + `/?email=${email}&password=${password}`);
     const { access } = data;
     setAccess(access);
-    access && navigate("/start/home");
+    access && navigate("/home");
     !access && window.alert("Los datos ingresados son incorrectos");
   };
 
@@ -80,9 +80,9 @@ function App() {
   useEffect(() => {
     
     !access &&
-      (pathname === "/start/home" ||
+      (pathname === "/home" ||
         pathname === "/favorites" ||
-        pathname === "/start/about" ||
+        pathname === "/about" ||
         CONSTANTES.searchPath(pathname)) &&
       navigate("/login");
 
@@ -96,8 +96,8 @@ function App() {
 
   return (
     <div className={style.App}>
-      {(pathname === "/start/home" ||
-        pathname === "/start/about" ||
+      {(pathname === "/home" ||
+        pathname === "/about" ||
         pathname === "/favorites" ||
         CONSTANTES.searchPath(pathname)) && (
         <Nav
@@ -113,11 +113,11 @@ function App() {
         <Route path="/login" element={<Form login={login} />} />
 
         <Route
-          path="/start/home"
+          path="/home"
           element={<Cards onClose={onClose} characters={characters} />}
         />
 
-        <Route path="/start/about" element={<About />} />
+        <Route path="/about" element={<About />} />
 
         <Route path="/detail/:id" element={<Detail />} />
 

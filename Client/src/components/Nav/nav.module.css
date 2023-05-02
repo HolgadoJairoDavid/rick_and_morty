@@ -57,11 +57,10 @@
   top: 0;
 }
 
-.Heading .LogOut {
+.Heading .LogOut, .Home, .About, .Favorites{
   color: #fff;
   text-decoration: none;
   font-family: "Raleway", sans-serif;
-  font-size: 15px;
   z-index: 100;
   cursor: pointer;
   background: none;
@@ -69,4 +68,63 @@
   position: relative;
   height: 40px;
   margin-top: 4px;
+  font-weight: lighter;
+  transition: 1s ease;
+  font-size: 20px;
+}
+
+.Heading .LogOut:hover::after {
+  position: relative;
+  margin-top: 10px;
+  content: ' | Log Out';
+}
+
+.Heading .LogOut::after {
+  position: absolute;
+  display: inline-block;
+  margin-left: 10px;
+  transition: 1s ease;
+  font-size: 12px;
+}
+
+.About:hover::after {
+  position: relative;
+  margin-top: 10px;
+  content: ' | About';
+}
+
+.About::after {
+  position: absolute;
+  display: inline-block;
+  margin-left: 10px;
+  transition: 1s ease;
+  font-size: 12px;
+}
+
+.Home:hover::after {
+  position: relative;
+  margin-top: 10px;
+  content: ' | Home';
+}
+
+.Home::after {
+  position: absolute;
+  display: inline-block;
+  margin-left: 10px;
+  transition: 1s ease;
+  font-size: 12px;
+}
+
+.Favorites:hover::after {
+  position: relative;
+  margin-top: 10px;
+  content: ' | Favorites';
+}
+
+.Favorites::after {
+  position: absolute;
+  display: inline-block;
+  margin-left: 10px;
+  transition: 1s ease;
+  font-size: 12px;
 }
