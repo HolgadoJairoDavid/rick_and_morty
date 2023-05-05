@@ -1,6 +1,6 @@
 .Cards {
   display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
+  grid-template-columns: 18.8% 18.8% 18.8% 18.8% 18.8%;
   grid-column-gap: 1.8em;
   margin-left: 1%;
   margin-right: 4%;

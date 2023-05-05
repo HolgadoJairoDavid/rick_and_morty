@@ -53,8 +53,10 @@
 
 
 .TechsImg {
-    display: flex;
-    justify-content: space-around;
+  margin-left: 12.5%;
+    display: grid;
+    grid-template-columns: repeat(5, 18.8%);
+    grid-row-gap: 1em;
 }
 
 .TechsImg img, .Contact img {

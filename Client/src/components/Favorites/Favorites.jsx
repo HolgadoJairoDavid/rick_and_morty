@@ -10,7 +10,7 @@ const Favorites = ({ myFavorites, allCharacters, removeFav }) => {
 
   useEffect(()=>{
 return ()=>{
-  dispatch(all())
+  dispatch(all()) // Muestra todos mis favoritos
 }
   }, [dispatch])
 
@@ -40,7 +40,7 @@ return ()=>{
         <button
           className={style.SeeAll}
           onClick={() => {
-            dispatch(all());
+            dispatch(all()); // Botón que muestra todos mis favoritos
           }}
         >
           See all
@@ -53,8 +53,8 @@ return ()=>{
             <option selected disabled>
               Order your characters
             </option>
-            <option value="A">Ascendente</option>
-            <option value="D">Descendente</option>
+            <option value="A">Ascendant</option>
+            <option value="D">Descendant</option>
           </select>
         </div>
 

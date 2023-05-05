@@ -16,7 +16,6 @@ import CONSTANTES from "./App/CONSTANTES";
 import Inicio from "./components/Inicio/Inicio";
 import Favorites from "./components/Favorites/Favorites";
 import { useDispatch } from "react-redux";
-import { cleanFavorites } from "./redux/actions";
 import style from "./app.module.css";
 
 function App() {
@@ -31,17 +30,22 @@ function App() {
 
   const login = async (userData) => {
     const { email, password } = userData;
-    const URL = "http://localhost:3001/rickandmorty/login";
-    const { data } = await axios(URL + `/?email=${email}&password=${password}`);
-    const { access } = data;
+    const URL = `http://localhost:3001/rickandmorty/login/?email=${email}&password=${password}`;
+    try {
+      const response = await axios.get(URL);
+      const { access } = response.data;
     setAccess(access);
     access && navigate("/home");
     !access && window.alert("Los datos ingresados son incorrectos");
+    } catch (error) {
+      window.alert("No estás logueado")
+    }
+
+
   };
 
   const logOut = () => {
     setAccess(false);
-    dispatch(cleanFavorites());
   };
 
   // ******************************************************************************
@@ -88,7 +92,6 @@ function App() {
 
     return () => {
       pathname === "/login" && setCharacters([]);
-      !access && dispatch(cleanFavorites())
     };
   }, [access, navigate, pathname, dispatch]);
 

@@ -9,6 +9,9 @@ import JavaScript from "../../assets/img/JavaScript.png";
 import Linkedin from "../../assets/img/Linkedin.png";
 import node from "../../assets/img/node.png";
 import react from "../../assets/img/react.png";
+import postGree from "../../assets/img/postGree.png";
+import seq from "../../assets/img/sequelize.png";
+import SQL from "../../assets/img/SQL.png";
 const About = () => {
   return (
     <div className={style.Container}>
@@ -54,6 +57,15 @@ const About = () => {
           </div>
           <div className={style.Back}>
             <img src={node} alt="" />
+          </div>
+          <div className={style.Back}>
+            <img src={postGree} alt="" />
+          </div>
+          <div className={style.Back}>
+            <img src={SQL} alt="" />
+          </div>
+          <div className={style.Back}>
+            <img src={seq} alt="" />
           </div>
         </div>
       </div>

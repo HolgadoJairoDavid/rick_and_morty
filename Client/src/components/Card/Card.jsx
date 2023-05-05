@@ -7,14 +7,16 @@ import { addFav, removeFav } from "../../redux/actions";
 function Card(props) {
   const {pathname} = useLocation()
   const [isFav, setIsFav] = useState(false);
+  
 
   const handleFavorite = () => {
+    
     if (isFav) {
-      setIsFav(false);
+      setIsFav(!isFav);
       props.removeFav(props.id);
     } else if (!isFav) {
-      setIsFav(true);
-      props.addFav(props);
+      setIsFav(!isFav);
+      props.addFav(props); 
     }
   };
 
@@ -28,7 +30,7 @@ function Card(props) {
 
   return (
     <div className={style.Card}>
-      {isFav ? (
+      {isFav === true? (
         <button className={style.FavoritesButton} onClick={handleFavorite}>
           ❤️
         </button>

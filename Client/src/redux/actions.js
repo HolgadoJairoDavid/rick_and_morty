@@ -5,7 +5,6 @@ const FILTER = "FILTER";
 const FILTERSPECIES = "FILTERSPECIES";
 const ORDER = "ORDER";
 const ALL = "ALL";
-const CLEAN = "CLEAN";
 
 export const addFav = (character) => {
   const endpoint = "http://localhost:3001/rickandmorty/fav";
@@ -64,17 +63,17 @@ export const all = () => {
   };
 };
 
-export const cleanFavorites = () => {
-  const endpoint = "http://localhost:3001/rickandmorty/fav/clean";
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.delete(endpoint);
-      return dispatch({
-        type: CLEAN,
-        payload: data,
-      });
-    } catch (error) {
-      console.log(`%cerror: ${error.message}`, `color:red;font-weight:bold`);
-    }
-  };
-};
+// export const cleanFavorites = () => {
+//   const endpoint = "http://localhost:3001/rickandmorty/fav/clean";
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.delete(endpoint);
+//       return dispatch({
+//         type: CLEAN,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       console.log(`%cerror: ${error.message}`, `color:red;font-weight:bold`);
+//     }
+//   };
+// };
